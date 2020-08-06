@@ -9,6 +9,10 @@ from tensorflow.keras.datasets import mnist
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import pickle
+
+train_data_size = 10000
+test_data_size = 1000
 
 def sort_labels_dict(images, labels):
     """
@@ -63,7 +67,7 @@ def create_augmented_dataset(a_dict, img_size=224, min_images=1, max_images=5, n
             else:
                 grid.append(int(np.round((img_size/nboxes)*i)))
         
-        vals = np.random.choice(nboxes*nboxes, size=nboxes)
+        vals = np.random.choice(nboxes*nboxes, size=nboxes, replace=False)
 
         for i in range(0,nboxes):
             # limit = grid[i] to grid[i+1] in a square
@@ -96,6 +100,12 @@ test_dict = sort_labels_dict(test_images, test_labels)
 
 # print(train_dict.keys())
 
-data_image, label_list = create_augmented_dataset(train_dict)
-print(data_image[0].shape)
-print(label_list[0])
+train_data_image, train_label_list = create_augmented_dataset(train_dict, nimages=train_data_size)
+test_data_image, test_label_list = create_augmented_dataset(test_dict, nimages=test_data_size)
+print(train_data_image.shape, test_data_image.shape)
+np.save('train.npy' , train_data_image)
+np.save('test.npy' , test_data_image)
+with open("train_label.pkl", "wb") as f1:
+    pickle.dump(train_label_list, f1)
+with open("test_label.pkl", "wb") as f2:
+    pickle.dump(test_label_list, f2)
