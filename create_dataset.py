@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 import pickle
 
 train_data_size = 10000
-test_data_size = 1000
+test_data_size = 2000
 
 def sort_labels_dict(images, labels):
     """
@@ -27,7 +27,7 @@ def sort_labels_dict(images, labels):
         a[i].append(images[j])
     return a
 
-def create_augmented_dataset(a_dict, img_size=224, min_images=1, max_images=5, nimages=1000):
+def create_augmented_dataset(a_dict, img_size=300, min_images=1, max_images=5, nimages=1000):
     """
         This takes in the train or test dict
         args: dict, imagesize, min images, max images, nimages
@@ -43,7 +43,7 @@ def create_augmented_dataset(a_dict, img_size=224, min_images=1, max_images=5, n
         # now place the mnist images over the img array
         nboxes = nobj_array[j]
         labels = np.random.randint(low=0, high=10, size=nboxes)
-        scales = np.random.uniform(low=1.0, high=1.5, size=nboxes)
+        scales = np.random.uniform(low=1.0, high=2.0, size=nboxes)
         timg_list = []
         l_list = []
         
