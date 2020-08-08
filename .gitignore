@@ -1,3 +1,8 @@
 *.npy
 *.npz
 *.pkl
+*.h5
+*.v2
+*.pyc
+*.jpg
+
