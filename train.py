@@ -10,7 +10,7 @@ import numpy as np
 from tensorflow.keras.optimizers.schedules import PiecewiseConstantDecay
 from anchor import generate_default_boxes
 from losses import create_losses
-from get_model import get_mobilenet_SSD
+from get_model2 import get_mobilenet_SSD
 
 from voc_data import create_batch_generator
 
