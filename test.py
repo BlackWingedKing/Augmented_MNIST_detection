@@ -88,7 +88,7 @@ if __name__ == '__main__':
     default_boxes = generate_default_boxes(config)
 
     batch_generator, info = create_batch_generator(
-        "./sample_data/images/", "./sample_data/gt/labels.pkl", default_boxes,
+        "./data/images/", "./data/gt/labels.pkl", default_boxes,
         config['image_size'],
         batch_size, args.num_examples, mode='test')
 

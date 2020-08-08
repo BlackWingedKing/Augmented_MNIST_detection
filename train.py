@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     default_boxes = generate_default_boxes(config)
     batch_generator, val_generator, info = create_batch_generator(
-        "./sample_data/images/", "./sample_data/gt/labels.pkl",default_boxes,
+        "./data/images/", "./data/gt/labels.pkl",default_boxes,
         config['image_size'],
         args.batch_size, args.num_batches,
         mode='train', augmentation=['flip'])  # the patching algorithm is currently causing bottleneck sometimes
