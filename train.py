@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser()
 # parser.add_argument('--data-dir', default='./dataset/bird_images-PascalVOC-export')
 
 parser.add_argument('--arch', default='ssd300')
-parser.add_argument('--batch-size', default=16, type=int)
+parser.add_argument('--batch-size', default=64, type=int)
 parser.add_argument('--num-batches', default=-1, type=int)
 parser.add_argument('--neg-ratio', default=3, type=int)
 parser.add_argument('--initial-lr', default=1e-3, type=float)
@@ -134,8 +134,8 @@ if __name__ == '__main__':
             avg_val_conf_loss = (avg_val_conf_loss * i + val_conf_loss.numpy()) / (i + 1)
             avg_val_loc_loss = (avg_val_loc_loss * i + val_loc_loss.numpy()) / (i + 1)
 
-        print('Epoch: {} Time: {:.2}s | Loss: {:.4f} Conf: {:.4f} Loc: {:.4f}'.format(
-                epoch + 1, time.time() - start, avg_loss, avg_conf_loss, avg_loc_loss))
+            print('Epoch: {} Batch {} Time: {:.2}s | Loss: {:.4f} Conf: {:.4f} Loc: {:.4f}'.format(
+                    epoch + 1, i + 1, time.time() - start, avg_loss, avg_conf_loss, avg_loc_loss))
 
         with train_summary_writer.as_default():
             tf.summary.scalar('loss', avg_loss, step=epoch)
