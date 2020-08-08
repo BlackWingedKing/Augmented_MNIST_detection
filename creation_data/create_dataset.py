@@ -11,8 +11,8 @@ import cv2
 from matplotlib import pyplot as plt
 import pickle
 
-train_data_size = 10000
-test_data_size = 2000
+train_data_size = 5000
+test_data_size = 1
 
 def sort_labels_dict(images, labels):
     """

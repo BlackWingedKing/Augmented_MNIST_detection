@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 # data paths
-data_path = "./data_np/"
+data_path = ""
 out_train_dir = "./data/images/"
 train = "train.npy"
 
