@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser()
 # parser.add_argument('--data-dir', default='./dataset/bird_images-PascalVOC-export')
 
 parser.add_argument('--arch', default='ssd300')
-parser.add_argument('--batch-size', default=64, type=int)
+parser.add_argument('--batch-size', default=32, type=int)
 parser.add_argument('--num-batches', default=-1, type=int)
 parser.add_argument('--neg-ratio', default=3, type=int)
 parser.add_argument('--initial-lr', default=1e-3, type=float)
