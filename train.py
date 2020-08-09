@@ -7,6 +7,7 @@ import time
 import yaml
 import numpy as np
 
+from tensorflow import keras
 from tensorflow.keras.optimizers.schedules import PiecewiseConstantDecay
 from anchor import generate_default_boxes
 from losses import create_losses
@@ -76,6 +77,7 @@ if __name__ == '__main__':
 
     try:
         ssd = get_mobilenet_SSD(image_size=(300,300,3), num_classes=NUM_CLASSES)
+        # ssd = keras.models.load_model("./models/ssd.h5", compile=False)
         # this might need to be changed
         for layer in ssd.layers:
             if 'base' in layer.name:
@@ -133,9 +135,6 @@ if __name__ == '__main__':
             avg_val_conf_loss = (avg_val_conf_loss * i + val_conf_loss.numpy()) / (i + 1)
             avg_val_loc_loss = (avg_val_loc_loss * i + val_loc_loss.numpy()) / (i + 1)
 
-        print('Epoch: {} Time: {:.2}s | Loss: {:.4f} Conf: {:.4f} Loc: {:.4f}'.format(
-                epoch + 1, time.time() - start, avg_loss, avg_conf_loss, avg_loc_loss))
-
         with train_summary_writer.as_default():
             tf.summary.scalar('loss', avg_loss, step=epoch)
             tf.summary.scalar('conf_loss', avg_conf_loss, step=epoch)
@@ -147,6 +146,9 @@ if __name__ == '__main__':
             tf.summary.scalar('loc_loss', avg_val_loc_loss, step=epoch)
 
         ssd.save('./models/ssd.h5')
+
+        print('Epoch: {} Time: {:.2}s | Loss: {:.4f} Conf: {:.4f} Loc: {:.4f}'.format(
+                epoch + 1, time.time() - start, avg_loss, avg_conf_loss, avg_loc_loss))
 
         # converter = tf.lite.TFLiteConverter.from_keras_model(ssd)
         # converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_LATENCY]
