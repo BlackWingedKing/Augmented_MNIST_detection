@@ -51,7 +51,7 @@ def predict(img, default_boxes):
     for c in range(1, num_classes):
         cls_scores = confs[:, c]
 
-        score_idx = cls_scores > 0.15
+        score_idx = cls_scores > 0.5
         # cls_boxes = tf.boolean_mask(boxes, score_idx)
         # cls_scores = tf.boolean_mask(cls_scores, score_idx)
         cls_boxes = boxes[score_idx]
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     try:
         # ssd = get_mobilenet_SSD(image_size=(300,300,3), num_classes=num_classes)
-        ssd = keras.models.load_model("./models/ssd.h5")
+        ssd = keras.models.load_model("./models/ssd_small.h5")
     except Exception as e:
         print(e)
         print('The program is exiting...')
