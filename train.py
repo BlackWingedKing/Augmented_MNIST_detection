@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     try:
         ssd = get_mobilenet_SSD(image_size=(300,300,3), num_classes=NUM_CLASSES)
-        # ssd = keras.models.load_model("./models/ssd.h5", compile=False)
+        # ssd = keras.models.load_model("./models/ssd.h5")
         # this might need to be changed
         for layer in ssd.layers:
             if 'base' in layer.name:
