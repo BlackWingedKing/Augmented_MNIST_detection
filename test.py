@@ -51,7 +51,7 @@ def predict(img, default_boxes):
     for c in range(1, num_classes):
         cls_scores = confs[:, c]
 
-        score_idx = cls_scores > 0.2
+        score_idx = cls_scores > 0.15
         # cls_boxes = tf.boolean_mask(boxes, score_idx)
         # cls_scores = tf.boolean_mask(cls_scores, score_idx)
         cls_boxes = boxes[score_idx]
