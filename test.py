@@ -57,7 +57,7 @@ def predict(img, default_boxes):
         cls_boxes = boxes[score_idx]
         cls_scores = cls_scores[score_idx]
 
-        nms_idx = compute_nms(cls_boxes, cls_scores, 0.45, 200)
+        nms_idx = compute_nms(cls_boxes, cls_scores, 0.35, 200)
         cls_boxes = tf.gather(cls_boxes, nms_idx)
         cls_scores = tf.gather(cls_scores, nms_idx)
         cls_labels = [c] * cls_boxes.shape[0]

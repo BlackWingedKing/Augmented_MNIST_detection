@@ -4,7 +4,9 @@ import cv2
 # data paths
 data_path = ""
 out_train_dir = "./data/images/"
+out_test_dir = "./sample_data/images/"
 train = "train.npy"
+test = "test.npy"
 
 # load the diles
 train_data = np.load(data_path+train)
@@ -20,13 +22,14 @@ for i in range(0, nimages):
     # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     cv2.imwrite(out_train_dir+str(i)+".jpg", img)
 
-# test_data = np.load(data_path+test)
-# nimages = test_data.shape[0]
+test_data = np.load(data_path+test)
+nimages = test_data.shape[0]
 
-# for i in range(0, nimages):
-#     # save each and every image
-#     a = test_data[i]
-#     # now make it as an bgr image
-#     img = cv2.cvtColor(a.astype(np.uint8),cv2.COLOR_GRAY2BGR)
-#     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#     cv2.imwrite(out_test_dir+str(i)+".jpg", img)
+for i in range(0, nimages):
+    # save each and every image
+    a = test_data[i]
+    # now make it as an bgr image
+    img = cv2.cvtColor(a.astype(np.uint8),cv2.COLOR_GRAY2BGR)
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(out_test_dir+str(i)+".jpg", img)
+
